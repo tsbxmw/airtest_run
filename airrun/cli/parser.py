@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import argparse
+
 from airrun.report.report import get_parger as report_parser
 
 
@@ -23,9 +24,18 @@ def get_parser():
 def runner_parser(ap=None):
     if not ap:
         ap = argparse.ArgumentParser()
-    ap.add_argument("--package", help="package name", default="com.**.*****", nargs="?")
-    ap.add_argument("--apk", help="apk package path", default="./apk/**.apk", nargs="?")
+    ap.add_argument("--package", help="package name", default="", nargs="?")
+    ap.add_argument("--apk", help="apk package path", default="", nargs="?")
     ap.add_argument("--install", help="install apk from file or not", default=False, nargs="?")
     ap.add_argument("--uninstall", help="uninstall apk or not", default=False, nargs="?")
     ap.add_argument("--device", help="Android Device", default="", nargs="?")
+    ap.add_argument("--script", help="script path", default="", nargs="?")
     return ap
+
+
+def check_runner_args(args):
+    for key in ['package', 'device']:
+        if not hasattr(args, key) or getattr(args, key) in ['', None]:
+            print(f"[Error] 缺少参数 {key}")
+            return False
+    return True

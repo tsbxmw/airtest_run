@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from airrun.cli.parser import get_parser
+import sys
+
+from airrun.cli.parser import get_parser, check_runner_args
 
 
 def main(argv=None):
@@ -13,6 +15,9 @@ def main(argv=None):
         report_main(args)
     elif args.action == "run":
         from airrun.main import main as runner
+        if not check_runner_args(args):
+            ap.print_help()
+            sys.exit(-1)
         runner(args)
     elif args.action == "version":
         from airrun.utils.version import show_version
