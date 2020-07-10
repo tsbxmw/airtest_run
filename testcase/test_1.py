@@ -3,7 +3,7 @@ import time
 
 from airtest.core.api import *
 
-from airrun.common.marks import framework_setup
+from airrun.common.marks import airrun_setup
 from testcase.config.config import LocalSetting
 from testcase.pages import main_page_template
 
@@ -17,7 +17,7 @@ __desc__ = """
 
 
 # 1
-@framework_setup(package_name=LocalSetting.APP_PACKAGE_NAME, test_name="test_1", login_func=None)
+@airrun_setup(package_name=LocalSetting.APP_PACKAGE_NAME, test_name="test_1", login_func=None)
 def test_1():
     start_app(LocalSetting.APP_PACKAGE_NAME)
     time.sleep(5)

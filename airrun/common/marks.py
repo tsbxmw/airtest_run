@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 # 用来启动所有当前测试需要的方法
-def framework_setup(**kwargs):
+def airrun_setup(**kwargs):
     # 这里获取 device 信息，可以用于 连接 stf device
     device_name = kwargs.get('device_name')
     app_package = kwargs.get('package_name')
